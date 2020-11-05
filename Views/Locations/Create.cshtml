@@ -1,0 +1,111 @@
+﻿@model TTG3.Models.Location
+
+@{
+    ViewBag.Title = "Add Location";
+}
+<h3 class="text-center">Add New Location</h3>
+<hr />
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-3">
+        <div class="card shadow">
+            <div class="card-header text-center">
+                <h6 class="card-title">Instructions</h6>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <ul style="font-size:12px" class="list-group">
+                        <li class="list-group-item">Enter Room&nbsp;-&nbsp;Number, Example Chanakya&nbsp;-&nbsp;202 or Lab&nbsp;-&nbsp;205.</li>
+                        <li class="list-group-item">Select Semester Number from Dropdown List as Required.</li>
+                        <li class="list-group-item">Select Theory&nbsp;/&nbsp;Practical from Dropdown List with respect to Room&nbsp;-&nbsp;Number.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <table style="margin:auto">
+                    <tr class="text-center">
+                        <td>
+                            @Html.LabelFor(model => model.Room, htmlAttributes: new { @class = "control-label" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.EditorFor(model => model.Room, new { htmlAttributes = new { @class = "form-control text-center", @style = "width:300px;color:black", placeholder = "Room-Number", autocomplete = "off" } })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>
+                            @Html.ValidationMessageFor(model => model.Room, "", new { @class = "text-danger", @style = "font-size:14px" })
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr class="text-center">
+                        <td>
+                            @Html.LabelFor(model => model.Semester_Number, htmlAttributes: new { @class = "control-label" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(model => model.Semester_Number, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="1",Value="1"},
+                                    new SelectListItem{Text="2",Value="2"},
+                                    new SelectListItem{Text="3",Value="3"},
+                                    new SelectListItem{Text="4",Value="4"},
+                                    new SelectListItem{Text="5",Value="5"}
+                               }, "Select Semester", htmlAttributes: new { @class = "form-control text-center", @style = "color:black" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>
+                            @Html.ValidationMessageFor(model => model.Semester_Number, "", new { @class = "text-danger", @style = "font-size:14px" })
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr class="text-center">
+                        <td>
+                            @Html.LabelFor(model => model.Subject_Type, htmlAttributes: new { @class = "control-label" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(model => model.Subject_Type, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="Theory",Value="Theory"},
+                                    new SelectListItem{Text="Practical",Value="Practical"}
+                               }, "Select Type", htmlAttributes: new { @class = "form-control text-center", @style = "color:black" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>
+                            @Html.ValidationMessageFor(model => model.Subject_Type, "", new { @class = "text-danger", @style = "font-size:14px" })
+                        </td>
+                    </tr>
+                    <tr style="height:25px"><td></td></tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Add" class="btn btn-block" style="background-color:#31D67B;color:black;font-weight:bold;" />
+                        </td>
+                    </tr>
+                    @if (ViewBag.ErrMsg != null)
+                    {
+                        <tr class="text-center text-danger">
+                            <td>@ViewBag.ErrMsg</td>
+                        </tr>
+                    }
+                </table>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+<hr />

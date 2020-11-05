@@ -1,0 +1,52 @@
+﻿@model TTG3.Models.Session
+
+@{
+    ViewBag.Title = "Delete Session";
+}
+<h3 class="text-center">Delete Session</h3>
+<hr />
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h6>Are you sure you want to delete this?</h6>
+            </div>
+            <div class="card-body">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Professor.Professor_Name)</dt>
+                    <dd>@Html.DisplayFor(model => model.Professor.Professor_Name)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Subject.Subject_Name)</dt>
+                    <dd>@Html.DisplayFor(model => model.Subject.Subject_Name)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Semester_Number)</dt>
+                    <dd>@Html.DisplayFor(model => model.Semester_Number)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Subject_Type)</dt>
+                    <dd>@Html.DisplayFor(model => model.Subject_Type)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Sessions_Per_Week)</dt>
+                    <dd>@Html.DisplayFor(model => model.Sessions_Per_Week)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Priority_Level)</dt>
+                    @if(Model.Priority_Level==1)
+                    {
+                        <dd>High</dd>
+                    }
+                    else
+                    {
+                        <dd>Low</dd>
+                    }
+                    @*<dd>@Html.DisplayFor(model => model.Priority_Level)</dd>*@
+                </dl>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger btn-block" style="font-weight:bold" />
+                    </div>
+                }
+            </div>
+            <div class="card-footer text-right">
+                @Html.ActionLink("Back to List", "Index", "Sessions", new { @class = "btn", @style = "background-color:#31D67B;color:black;font-weight:bold;" })
+            </div>
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TTG3.Models.Subject>
+@{
+    ViewBag.Title = "Subject";
+}
+@if(@ViewBag.Saved!=null)
+{
+    <div class="alert alert-success">
+        <strong>Subject Added Successfully!</strong>
+    </div>
+}
+<h3 class="text-center">Subject Details</h3>
+<hr />
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <table class="table table-hover text-center table-bordered">
+            <tr>
+                <td style="width:250px">Theory Subjects</td>
+                <th><span class="badge-warning badge-pill">@ViewData["theoryCount"]</span></th>
+                <td style="width:250px">Practical Subjects</td>
+                <th><span class="badge-warning badge-pill">@ViewData["practicalCount"]</span></th>
+                <td>@Html.ActionLink("Add Subject", "Create", "Subjects", new { @class = "btn btn-block", @style = "background-color:#31D67B;color:black;font-weight:bold;" })</td>
+            </tr>
+        </table>
+        @*<p class="text-right">
+            @Html.ActionLink("Add Subject", "Create", "Subjects", new { @class="btn",@style= "background-color:#31D67B;color:black;font-weight:bold;" })
+        </p>*@
+        <div class="" style="height:500px;overflow-y:scroll">
+            <table class="table table-bordered table-hover table-striped text-center">
+                <tr>
+                    <th style="width:200px;">@Html.DisplayNameFor(model => model.Semester_Number)</th>
+                    <th style="width:200px;">@Html.DisplayNameFor(model => model.Subject_Code)</th>
+                    <th style="width:300px;">@Html.DisplayNameFor(model => model.Subject_Name)</th>
+                    <th style="width:200px;"></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Semester_Number)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Subject_Code)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Subject_Name)</td>
+                        <td align="center">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Subject_ID }, new { @class = "btn btn-sm", @style = "border-width:2px;border-color:red;width:70px;font-weight:bold" })
+                            &nbsp;
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Subject_ID }, new { @class = "btn btn-sm", @style = "border-width:2px;border-color:red;width:70px;font-weight:bold" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

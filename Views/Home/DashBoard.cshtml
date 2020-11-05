@@ -1,0 +1,496 @@
+﻿@model List<TTG3.Models.MyViewModel>
+@{
+    ViewBag.Title = "Dash Board";
+}
+<style>
+    .red{
+        color:red;
+    }
+    .green{
+        color:green;
+    }
+</style>
+<h2 class="text-center">Dash Board</h2>
+<hr style="background-color:black"/>
+<div class="row">
+    <div class="col-4">
+        <div class="card shadow" style="width:250px;height:200px;margin:auto">
+            <div class="card-body" style="background-color: #31D67B">
+                @if (ViewData["labCount"] != null)
+                {
+                    <h1 class="text-center font-weight-bold">@ViewData["labCount"]</h1>
+                }
+                else
+                {
+                    <h1 class="text-center font-weight-bold">0</h1>
+                }
+            </div>
+            <div class="card-footer text-center">
+                <p class="card-text">Lab Available</p>
+                <button type="button" class="btn btn-block" style="background-color: #157DFA;color: black;font-weight: bold;" data-toggle="modal" data-target="#labListModal">
+                    Lab List
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card shadow" style="width:250px;height:200px;margin:auto">
+            <div class="card-body" style="background-color:#31D67B;">
+                @if (ViewData["classroomCount"] != null)
+                {
+                    <h1 class="text-center font-weight-bold">@ViewData["classroomCount"]</h1>
+                }
+                else
+                {
+                    <h1 class="text-center font-weight-bold">0</h1>
+                }
+            </div>
+            <div class="card-footer text-center">
+                <p class="card-text">Room Available</p>
+                <button type="button" class="btn btn-block" style="background-color: #157DFA;color: black;font-weight: bold;" data-toggle="modal" data-target="#roomListModal">
+                    Room List
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card shadow" style="width:250px;height:200px;margin:auto">
+            <div class="card-body" style="background-color:#31D67B;">
+                @if (ViewData["theorySubjectCount"] != null)
+                {
+                    <h1 class="text-center font-weight-bold">@ViewData["theorySubjectCount"]</h1>
+                }
+                else
+                {
+                    <h1 class="text-center font-weight-bold">0</h1>
+                }
+            </div>
+            <div class="card-footer text-center">
+                <p class="card-text">Theory Subject</p>
+                <button type="button" class="btn btn-block" style="background-color: #157DFA;color: black;font-weight: bold;" data-toggle="modal" data-target="#theorySubjectModal">
+                    Theory Subject List
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<hr style="width:70%;background-color:black"/>
+<div class="row">
+    <div class="col-4">
+        <div class="card shadow" style="width:250px;height:200px;margin:auto">
+            <div class="card-body" style="background-color: #31D67B">
+                @if (ViewData["practicalSubjectCount"] != null)
+                {
+                    <h1 class="text-center font-weight-bold">@ViewData["practicalSubjectCount"]</h1>
+                }
+                else
+                {
+                    <h1 class="text-center font-weight-bold">0</h1>
+                }
+            </div>
+            <div class="card-footer text-center">
+                <p class="card-text">Practical Subject</p>
+                <button type="button" class="btn btn-block" style="background-color: #157DFA;color: black;font-weight: bold;" data-toggle="modal" data-target="#practicalSubjectModal">
+                    Practical Subject List
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card shadow" style="width:250px;height:200px;margin:auto">
+            <div class="card-body" style="background-color: #31D67B">
+                @if (ViewData["internalProfessorCount"] != null)
+                {
+                    <h1 class="text-center font-weight-bold">@ViewData["internalProfessorCount"]</h1>
+                }
+                else
+                {
+                    <h1 class="text-center font-weight-bold">0</h1>
+                }
+            </div>
+            <div class="card-footer text-center">
+                <p class="card-text">Internal Professor</p>
+                <button type="button" class="btn btn-block" style="background-color: #157DFA;color:black;font-weight:bold;" data-toggle="modal" data-target="#internalProfessorModal">
+                    Professor List
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card shadow" style="width:250px;height:200px;margin:auto">
+            <div class="card-body" style="background-color: #31D67B">
+                @if (ViewData["externalProfessorCount"] != null)
+                {
+                    <h1 class="text-center font-weight-bold">@ViewData["externalProfessorCount"]</h1>
+                }
+                else
+                {
+                    <h1 class="text-center font-weight-bold">0</h1>
+                }
+            </div>
+            <div class="card-footer text-center">
+                <p class="card-text">External Professor</p>
+                <button type="button" class="btn btn-block" style="background-color:#157DFA;color:black;font-weight:bold;" data-toggle="modal" data-target="#externalProfessorModal">
+                    Professor List
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<hr style="background-color:black"/>
+<div class="row" style="margin-bottom:70px">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <nav>
+                    <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-sem1-tab" data-toggle="tab" href="#nav-sem1" role="tab" aria-controls="nav-sem1" aria-selected="true">Semester 1</a>
+                        <a class="nav-item nav-link" id="nav-sem2-tab" data-toggle="tab" href="#nav-sem2" role="tab" aria-controls="nav-sem2" aria-selected="false">Semester 2</a>
+                        <a class="nav-item nav-link" id="nav-sem3-tab" data-toggle="tab" href="#nav-sem3" role="tab" aria-controls="nav-sem3" aria-selected="false">Semester 3</a>
+                        <a class="nav-item nav-link" id="nav-sem4-tab" data-toggle="tab" href="#nav-sem4" role="tab" aria-controls="nav-sem4" aria-selected="false">Semester 4</a>
+                        <a class="nav-item nav-link" id="nav-sem5-tab" data-toggle="tab" href="#nav-sem5" role="tab" aria-controls="nav-sem5" aria-selected="false">Semester 5</a>
+                    </div>
+                </nav>
+                <div class="tab-content text-center" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-sem1" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="shadow">
+                            <br />
+                            <table class="table table-bordered" style="width:400px;margin:auto">
+                                <tr>
+                                    <th rowspan="4" class="align-middle">Semester 1 Overview</th>
+                                </tr>
+                                <tr>
+                                    <td>Theory Subjects</td>
+                                    <th>@ViewData["s1tc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Practical Subjects</td>
+                                    <th>@ViewData["s1pc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Total Sessions Per Week</td>
+                                    <th>@ViewData["s1ts"]</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-sem2" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="shadow">
+                            <br />
+                            <table class="table table-bordered" style="width:400px;margin:auto">
+                                <tr>
+                                    <th rowspan="4" class="align-middle">Semester 2 Overview</th>
+                                </tr>
+                                <tr>
+                                    <td>Theory Subjects</td>
+                                    <th>@ViewData["s2tc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Practical Subjects</td>
+                                    <th>@ViewData["s2pc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Total Sessions Per Week</td>
+                                    <th>@ViewData["s2ts"]</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-sem3" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="shadow">
+                            <br />
+                            <table class="table table-bordered" style="width:400px;margin:auto">
+                                <tr>
+                                    <th rowspan="4" class="align-middle">Semester 3 Overview</th>
+                                </tr>
+                                <tr>
+                                    <td>Theory Subjects</td>
+                                    <th>@ViewData["s3tc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Practical Subjects</td>
+                                    <th>@ViewData["s3pc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Total Sessions Per Week</td>
+                                    <th>@ViewData["s3ts"]</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-sem4" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="shadow">
+                            <br />
+                            <table class="table table-bordered" style="width:400px;margin:auto">
+                                <tr>
+                                    <th rowspan="4" class="align-middle">Semester 4 Overview</th>
+                                </tr>
+                                <tr>
+                                    <td>Theory Subjects</td>
+                                    <th>@ViewData["s4tc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Practical Subjects</td>
+                                    <th>@ViewData["s4pc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Total Sessions Per Week</td>
+                                    <th>@ViewData["s4ts"]</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-sem5" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="shadow">
+                            <br />
+                            <table class="table table-bordered" style="width:400px;margin:auto">
+                                <tr>
+                                    <th rowspan="4" class="align-middle">Semester 5 Overview</th>
+                                </tr>
+                                <tr>
+                                    <td>Theory Subjects</td>
+                                    <th>@ViewData["s5tc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Practical Subjects</td>
+                                    <th>@ViewData["s5pc"]</th>
+                                </tr>
+                                <tr>
+                                    <td>Total Sessions Per Week</td>
+                                    <th>@ViewData["s5ts"]</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <p class="m-auto" style="margin-top:20px !important">
+        
+    </p>
+</div>
+<div class="row" style="margin-bottom:70px">
+    <div class="col-3">
+        <div class="card shadow m-auto">
+            <div class="card-header">
+                <h5 class="text-center">Option 1</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Total Session Weekly</li>
+                    <li class="list-group-item"><i class="fas fa-times-circle red"></i> Professor Clash</li>
+                    <li class="list-group-item"><i class="fas fa-times-circle red"></i> Per Subject Priority Level</li>
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+                @Html.ActionLink("Generate Time Table", "TimeTableO1", "Home", htmlAttributes: new { @class = "btn btn-block" , @style = "background-color:#157DFA;color:black;font-weight:bold;" })
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card shadow m-auto">
+            <div class="card-header">
+                <h5 class="text-center">Option 2</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Total Session Weekly</li>
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Professor Clash</li>
+                    <li class="list-group-item"><i class="fas fa-times-circle red"></i> Per Subject Priority Level</li>
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+                @Html.ActionLink("Generate Time Table", "TimeTableO2", "Home", htmlAttributes: new { @class = "btn btn-blocks" , @style = "background-color:#157DFA;color:black;font-weight:bold;" })
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card shadow m-auto">
+            <div class="card-header">
+                <h5 class="text-center">Option 3</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Total Session Weekly</li>
+                    <li class="list-group-item"><i class="fas fa-times-circle red"></i> Professor Clash</li>
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Priority Level</li>
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+                @Html.ActionLink("Generate Time Table", "TimeTableO3", "Home", htmlAttributes: new { @class = "btn btn-block", @style = "background-color:#157DFA;color:black;font-weight:bold;" })
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card shadow m-auto">
+            <div class="card-header">
+                <h5 class="text-center">Option 4</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Total Session Weekly</li>
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Professor Clash</li>
+                    <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Priority Level</li>
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+                @Html.ActionLink("Generate Time Table", "TimeTableO4", "Home", htmlAttributes: new { @class = "btn btn-block", @style = "background-color:#157DFA;color:black;font-weight:bold;" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="labListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Labs Available</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table" style="font-size:12px">
+                    @if (ViewBag.labList != null)
+                    {
+                        foreach (var item in ViewBag.labList)
+                        {
+                            <tr><td>@item.LabName</td></tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="roomListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Class Room Available</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table" style="font-size:12px">
+                    @if (ViewBag.roomList != null)
+                    {
+                        foreach (var item in ViewBag.roomList)
+                        {
+                            <tr><td>@item.RoomName</td></tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="theorySubjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Theory Subject List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table" style="font-size:12px">
+                    @if (ViewBag.theorySubjectList != null)
+                    {
+                        <tr>
+                            <th style="max-width:100px;">Subject Code</th>
+                            <th>Subject Name</th>
+                        </tr>
+                        foreach (var item in ViewBag.theorySubjectList)
+                        {
+                            <tr>
+                                <td>@item.TCode</td>
+                                <td>@item.TName</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="practicalSubjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Practical Subject List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table" style="font-size:12px">
+                    @if (ViewBag.practicalSubjectList != null)
+                    {
+                        <tr>
+                            <th style="max-width:100px;">Subject Code</th>
+                            <th>Subject Name</th>
+                        </tr>
+                        foreach (var item in ViewBag.practicalSubjectList)
+                        {
+                            <tr>
+                                <td>@item.PCode</td>
+                                <td>@item.PName</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="internalProfessorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Internal Professor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table" style="font-size:12px">
+                    @if (ViewBag.internalProfessorList != null)
+                    {
+                        foreach (var item in ViewBag.internalProfessorList)
+                        {
+                            <tr><td>@item.IProfName</td></tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="externalProfessorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">External Professor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table" style="font-size:12px">
+                    @if (ViewBag.externalProfessorList != null)
+                    {
+                        foreach (var item in ViewBag.externalProfessorList)
+                        {
+                            <tr><td>@item.EProfName</td></tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

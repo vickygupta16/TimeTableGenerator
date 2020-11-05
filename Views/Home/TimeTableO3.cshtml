@@ -1,0 +1,525 @@
+﻿@{
+    ViewBag.Title = "Time Table";
+}
+<style>
+    table {
+        font-size: 12px;
+        /*height:1000px !important;*/
+        white-space: pre-wrap;
+    }
+    table td, table th {
+        vertical-align: middle !important;
+    }
+    .red {
+        color: red;
+    }
+    .green {
+        color: green;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+<script>
+    $(document).ready(function () {
+        var element;
+        var getCanvas;
+        $("#sem1tt").on('click', function () {
+            element = $(".sem1");
+            html2canvas(element, {
+                onrendered: function (canvas) {
+                    getCanvas = canvas;
+                    var imageData = getCanvas.toDataURL("image/png");
+                    var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                    $("#sem1tt").attr("download", "Semester 1.png").attr("href", newData);
+                }
+            });
+        });
+        $("#sem2tt").on('click', function () {
+            element = $(".sem2");
+            html2canvas(element, {
+                onrendered: function (canvas) {
+                    getCanvas = canvas;
+                    var imageData = getCanvas.toDataURL("image/png");
+                    var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                    $("#sem2tt").attr("download", "Semester 2.png").attr("href", newData);
+                }
+            });
+        });
+        $("#sem3tt").on('click', function () {
+            element = $(".sem3");
+            html2canvas(element, {
+                onrendered: function (canvas) {
+                    getCanvas = canvas;
+                    var imageData = getCanvas.toDataURL("image/png");
+                    var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                    $("#sem3tt").attr("download", "Semester 3.png").attr("href", newData);
+                }
+            });
+        });
+        $("#sem4tt").on('click', function () {
+            element = $(".sem4");
+            html2canvas(element, {
+                onrendered: function (canvas) {
+                    getCanvas = canvas;
+                    var imageData = getCanvas.toDataURL("image/png");
+                    var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                    $("#sem4tt").attr("download", "Semester 4.png").attr("href", newData);
+                }
+            });
+        });
+        $("#sem5tt").on('click', function () {
+            element = $(".sem5");
+            html2canvas(element, {
+                onrendered: function (canvas) {
+                    getCanvas = canvas;
+                    var imageData = getCanvas.toDataURL("image/png");
+                    var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                    $("#sem5tt").attr("download", "Semester 5.png").attr("href", newData);
+                }
+            });
+        });
+    });
+</script>
+@if (ViewData["SuccessTT"] != null)
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <table class="table">
+                    <tr>
+                        <td><a id="sem1tt" href="#" class="btn btn-warning">Download Semester 1 Time Table</a></td>
+                        <td><a id="sem3tt" href="#" class="btn btn-warning">Download Semester 3 Time Table</a></td>
+                        <td><a id="sem5tt" href="#" class="btn btn-warning">Download Semester 5 Time Table</a></td>
+                    </tr>
+                    <tr>
+                        <td><a id="sem2tt" href="#" class="btn btn-warning">Download Semester 2 Time Table</a></td>
+                        <td><a id="sem4tt" href="#" class="btn btn-warning">Download Semester 4 Time Table</a></td>
+                        <td align="center">@Html.ActionLink("Back to Dash Board", "DashBoard", "Home", htmlAttributes: new { @class = "btn btn-outline-warning" })</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-4">
+                <div class="card shadow m-auto">
+                    <div class="card-header">
+                        <h5 class="text-center">Option 3</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Total Session Weekly</li>
+                            <li class="list-group-item"><i class="fas fa-times-circle red"></i> Professor Clash</li>
+                            <li class="list-group-item"><i class="far fa-check-circle green"></i> Per Subject Priority Level</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center">
+                        @Html.ActionLink("Try Again", "TimeTableO3", "Home", htmlAttributes: new { @class = "btn btn-block", @style = "background-color:#157DFA;color:black;font-weight:bold;" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4>@ViewData["SuccessTT"]</h4>
+    if (ViewBag.TryAgainS1 != null)
+    {
+        <h4 class="text-danger">@ViewBag.TryAgainS1</h4>
+    }
+    if (ViewBag.TryAgainS2 != null)
+    {
+        <h4 class="text-danger">@ViewBag.TryAgainS2</h4>
+    }
+    if (ViewBag.TryAgainS3 != null)
+    {
+        <h4 class="text-danger">@ViewBag.TryAgainS3</h4>
+    }
+    if (ViewBag.TryAgainS4 != null)
+    {
+        <h4 class="text-danger">@ViewBag.TryAgainS4</h4>
+    }
+    if (ViewBag.TryAgainS5 != null)
+    {
+        <h4 class="text-danger">@ViewBag.TryAgainS5</h4>
+    }
+    if (ViewBag.Sem_1_TT != null)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card sem1">
+                    <div class="card-header text-center">
+                        <h4>Semester 1</h4>
+                    </div>
+                    <table class="table table-bordered text-center">
+                        @{
+                            int d = 0, mon = 7, tues = 14, wed = 21, thur = 28, fri = 35, sat = 42;
+                        }
+                        @while (d < mon && sat < 49)
+                        {
+                            <tr>
+                                <th style="width:200px;">@ViewBag.Sem_1_TT[d]</th>
+                                @if (ViewBag.Sem_1_TT[mon] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_1_TT[mon]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_1_TT[tues] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_1_TT[tues]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_1_TT[wed] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_1_TT[wed]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_1_TT[thur] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_1_TT[thur]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_1_TT[fri] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_1_TT[fri]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_1_TT[fri] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_1_TT[sat]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                            </tr>
+                            d++; mon++; tues++; wed++; thur++; fri++; sat++;
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    if (ViewBag.Sem_2_TT != null)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card sem2">
+                    <div class="card-header text-center">
+                        <h4>Semester 2</h4>
+                    </div>
+                    <table class="table table-bordered text-center">
+                        @{
+                            int d = 0, mon = 7, tues = 14, wed = 21, thur = 28, fri = 35, sat = 42;
+                        }
+                        @while (d < mon && sat < 49)
+                        {
+                            <tr>
+                                <th style="width:200px;">@ViewBag.Sem_2_TT[d]</th>
+                                @if (ViewBag.Sem_2_TT[mon] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_2_TT[mon]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_2_TT[tues] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_2_TT[tues]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_2_TT[wed] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_2_TT[wed]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_2_TT[thur] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_2_TT[thur]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_2_TT[fri] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_2_TT[fri]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_2_TT[sat] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_2_TT[sat]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                            </tr>
+                            d++; mon++; tues++; wed++; thur++; fri++; sat++;
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    if (ViewBag.Sem_3_TT != null)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card sem3">
+                    <div class="card-header text-center">
+                        <h4>Semester 3</h4>
+                    </div>
+                    <table class="table table-bordered text-center">
+                        @{
+                            int d = 0, mon = 7, tues = 14, wed = 21, thur = 28, fri = 35, sat = 42;
+                        }
+                        @while (d < mon && sat < 49)
+                        {
+                            <tr>
+                                <th style="width:200px;">@ViewBag.Sem_3_TT[d]</th>
+                                @if (ViewBag.Sem_3_TT[mon] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_3_TT[mon]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_3_TT[tues] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_3_TT[tues]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_3_TT[wed] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_3_TT[wed]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_3_TT[thur] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_3_TT[thur]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_3_TT[fri] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_3_TT[fri]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_3_TT[sat] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_3_TT[sat]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                            </tr>
+                            d++; mon++; tues++; wed++; thur++; fri++; sat++;
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    if (ViewBag.Sem_4_TT != null)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card sem4">
+                    <div class="card-header text-center">
+                        <h4>Semester 4</h4>
+                    </div>
+                    <table class="table table-bordered text-center">
+                        @{
+                            int d = 0, mon = 7, tues = 14, wed = 21, thur = 28, fri = 35, sat = 42;
+                        }
+                        @while (d < mon && sat < 49)
+                        {
+                            <tr>
+                                <th style="width:200px;">@ViewBag.Sem_4_TT[d]</th>
+                                @if (ViewBag.Sem_4_TT[mon] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_4_TT[mon]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_4_TT[tues] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_4_TT[tues]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_4_TT[wed] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_4_TT[wed]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_4_TT[thur] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_4_TT[thur]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_4_TT[fri] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_4_TT[fri]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_4_TT[sat] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_4_TT[sat]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                            </tr>
+                            d++; mon++; tues++; wed++; thur++; fri++; sat++;
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    if (ViewBag.Sem_5_TT != null)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card sem5">
+                    <div class="card-header text-center">
+                        <h4>Semester 5</h4>
+                    </div>
+                    <table class="table table-bordered text-center">
+                        @{
+                            int d = 0, mon = 7, tues = 14, wed = 21, thur = 28, fri = 35, sat = 42;
+                        }
+                        @while (d < mon && sat < 49)
+                        {
+                            <tr>
+                                <th style="width:200px;">@ViewBag.Sem_5_TT[d]</th>
+                                @if (ViewBag.Sem_5_TT[mon] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_5_TT[mon]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_5_TT[tues] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_5_TT[tues]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_5_TT[wed] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_5_TT[wed]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_5_TT[thur] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_5_TT[thur]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_5_TT[fri] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_5_TT[fri]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                                @if (ViewBag.Sem_5_TT[sat] != "BREAK")
+                                {
+                                    <td style="width:200px;">@ViewBag.Sem_5_TT[sat]</td>
+                                }
+                                else
+                                {
+                                    <td style="width:200px;background-color:orange">BREAK</td>
+                                }
+                            </tr>
+                            d++; mon++; tues++; wed++; thur++; fri++; sat++;
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    if (ViewData["Sem1TS"] != null)
+    {
+        <h4 class="text-danger">@ViewData["Sem1TS"]</h4>
+    }
+    if (ViewData["Sem2TS"] != null)
+    {
+        <h4 class="text-danger">@ViewData["Sem2TS"]</h4>
+    }
+    if (ViewData["Sem3TS"] != null)
+    {
+        <h4 class="text-danger">@ViewData["Sem3TS"]</h4>
+    }
+    if (ViewData["Sem4TS"] != null)
+    {
+        <h4 class="text-danger">@ViewData["Sem4TS"]</h4>
+    }
+    if (ViewData["Sem5TS"] != null)
+    {
+        <h4 class="text-danger">@ViewData["Sem5TS"]</h4>
+    }
+}

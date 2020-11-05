@@ -1,0 +1,58 @@
+﻿@model TTG3.Models.Subject
+
+@{
+    ViewBag.Title = "Delete Subject";
+}
+<h3 class="text-center">Delete Location</h3>
+<hr />
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h6>Are you sure you want to delete this?</h6>
+            </div>
+            <div class="card-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Semester_Number)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Semester_Number)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Subject_Code)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Subject_Code)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Subject_Name)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Subject_Name)
+                    </dd>
+                </dl>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger btn-block" style="font-weight:bold" />
+                    </div>
+                }
+                @if(ViewBag.ErrMsg!=null)
+                {
+                    <p style="font-size:12px;color:red" class="text-right">@ViewBag.ErrMsg</p>
+                }
+                else if(ViewBag.dbexemsg!=null)
+                {
+                    <p style="font-size:12px;color:red" class="text-right">@ViewBag.dbexemsg</p>
+                }
+            </div>
+            <div class="card-footer text-right">
+                @Html.ActionLink("Back to List", "Index","Subjects", new { @class = "btn", @style = "background-color:#31D67B;color:black;font-weight:bold;" })
+            </div>
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>

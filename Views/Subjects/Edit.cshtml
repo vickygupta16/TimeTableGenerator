@@ -1,0 +1,68 @@
+﻿@model TTG3.Models.Subject
+
+@{
+    ViewBag.Title = "Edit Subject";
+}
+<h3 class="text-center">Edit Subject</h3>
+<hr />
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Subject_ID)
+                <table style="margin:auto">
+                    <tr class="text-center">
+                        <td>@Html.LabelFor(model => model.Semester_Number, htmlAttributes: new { @class = "control-label" })</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(model => model.Semester_Number, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="1",Value="1"},
+                                    new SelectListItem{Text="2",Value="2"},
+                                    new SelectListItem{Text="3",Value="3"},
+                                    new SelectListItem{Text="4",Value="4"},
+                                    new SelectListItem{Text="5",Value="5"}
+                               }, "Select Semester", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Semester_Number, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>@Html.LabelFor(model => model.Subject_Code, htmlAttributes: new { @class = "control-label" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.Subject_Code, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Subject Code", autocomplete = "off" } })</td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Subject_Code, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>@Html.LabelFor(model => model.Subject_Name, htmlAttributes: new { @class = "control-label" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.Subject_Name, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Subject Name", autocomplete = "off" } })</td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Subject_Name, "", new { @class = "text-danger",@style="font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:25px"><td></td></tr>
+                    <tr>
+                        <td><input type="submit" value="Update" class="btn btn-block" style="background-color:#31D67B;color:black;font-weight:bold;" /></td>
+                    </tr>
+                </table>
+                }
+            </div>
+            <div class="card-footer text-right">
+                @Html.ActionLink("Back to List", "Index","Subjects", new { @class = "btn", @style = "background-color:#31D67B;color:black;font-weight:bold;" })
+            </div>
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>

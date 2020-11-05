@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTG3", "TTG3.csproj", "{3673E405-5372-439D-9C57-5EFD43C68842}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3673E405-5372-439D-9C57-5EFD43C68842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3673E405-5372-439D-9C57-5EFD43C68842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3673E405-5372-439D-9C57-5EFD43C68842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3673E405-5372-439D-9C57-5EFD43C68842}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0095728-A1FB-4571-920B-2DFEA83929D1}
+	EndGlobalSection
+EndGlobal

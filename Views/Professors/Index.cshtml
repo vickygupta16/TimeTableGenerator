@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TTG3.Models.Professor>
+
+@{
+    ViewBag.Title = "Professor";
+}
+<h3 class="text-center">Professor Details</h3>
+<br/>
+<div class="row">
+    <div class="col-12">
+        <table class="table text-center table-bordered table-hover">
+            <tr>
+                <td style="width:250px">Internal Professor Count</td>
+                <th><span class="badge-warning badge-pill">@ViewData["internalFaculty"]</span></th>
+                <td style="width:250px">Visiting Professor Count</td>
+                <th><span class="badge-warning badge-pill">@ViewData["externalFaculty"]</span></th>
+                <td>@Html.ActionLink("Create New", "Create", "Professors", new { @class = "btn btn-block", @style = "background-color:#31D67B;color:black;font-weight:bold;" })</td>
+            </tr>
+        </table>
+        <hr/>
+        @*<p class="text-right">
+            @Html.ActionLink("Create New", "Create","Professors",new { @class="btn" ,@style="background-color:#31D67B;color:black;font-weight:bold;"})
+        </p>*@
+        <div style="height:700px;overflow-y:scroll">
+            <table class="table table-bordered table-hover table-striped text-center">
+                <tr>
+                    <th style="width:210px">@Html.DisplayNameFor(model => model.Professor_Name)</th>
+                    <th style="width:210px">@Html.DisplayNameFor(model => model.Email)</th>
+                    <th style="width:100px">@Html.DisplayNameFor(model => model.Contact)</th>
+                    <th style="width:70px">@Html.DisplayNameFor(model => model.Gender)</th>
+                    <th style="width:50px;">@Html.DisplayNameFor(model => model.Age)</th>
+                    <th style="width:100px;">@Html.DisplayNameFor(model => model.Visiting_Faculty)</th>
+                    <th style="width:100px;">Availability</th>
+                    <th style="width:200px;"></th>
+                </tr>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Professor_Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Contact)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Visiting_Faculty)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Start_Hour) - @Html.DisplayFor(modelItem => item.End_Hour)</td>
+                        <td align="center">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Professor_ID }, new { @class = "btn btn-sm", @style = "border-width:2px;border-color:red;width:70px;font-weight:bold" })
+                            &nbsp;
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Professor_ID }, new { @class = "btn btn-sm", @style = "border-width:2px;border-color:red;width:70px;font-weight:bold" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

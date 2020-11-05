@@ -1,0 +1,42 @@
+﻿@model TTG3.Models.Location
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Location</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Semester_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semester_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Location_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

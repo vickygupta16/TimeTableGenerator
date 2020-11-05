@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<div align="center">
+    <div class="col-3"></div>
+    <div class="col-6">
+    <div class="card shadow-lg">
+        <h5 class="card-header">Login <i class="fas fa-sign-in-alt"></i></h5>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <form method="post">
+                    <table cellpadding="10px">
+                        <tr>
+                            <td>
+                                <input type="text" autofocus required id="userID" name="userID" placeholder="User ID" autocomplete="off" class="form-control text-center" style="width:400px;height:50px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="password" required id="password" name="password" autocomplete="off" placeholder="Password" class="form-control text-center" style="width:400px;height:50px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" value="Login" class="btn btn-block" style="background-color:#31D67B;color:black;font-weight:bold;"/>
+                            </td>
+                        </tr>
+                        @if (ViewBag.ErrorMsg != null)
+                        {
+                            <tr>
+                                <td class="text-danger text-sm-center">Invalid Credentials</td>
+                            </tr>
+                        }
+                    </table>
+                </form>
+            }
+        </div>
+    </div>
+        </div>
+    <div class="col-3"></div>
+</div>

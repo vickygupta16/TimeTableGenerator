@@ -1,0 +1,105 @@
+﻿@model TTG3.Models.Session
+
+@{
+    ViewBag.Title = "Create Session";
+}
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 50px 0;
+    }
+    td {
+        padding: 0px 10px;
+    }
+</style>
+<h3 class="text-center">Create New Session</h3>
+<br />
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <table style="margin:auto">
+                    <tr class="text-center">
+                        <th>@Html.LabelFor(model => model.Semester_Number, htmlAttributes: new { @class = "control-label" })</th>
+                        <th>@Html.LabelFor(model => model.Subject_ID, htmlAttributes: new { @class = "control-label" })</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.EditorFor(model => model.Semester_Number, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.Semester_Number, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="1",Value="1"},
+                                    new SelectListItem{Text="2",Value="2"},
+                                    new SelectListItem{Text="3",Value="3"},
+                                    new SelectListItem{Text="4",Value="4"},
+                                    new SelectListItem{Text="5",Value="5"}
+                               }, "Select Semester", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                        <td>@Html.DropDownList("Subject_ID", null, "Select Subject", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })</td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Semester_Number, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Subject_ID, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:16px"><td></td></tr>
+                    <tr class="text-center">
+                        <th>@Html.LabelFor(model => model.Professor_ID, htmlAttributes: new { @class = "control-label" })</th>
+                        <th>@Html.LabelFor(model => model.Subject_Type, htmlAttributes: new { @class = "control-label" })</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.DropDownList("Professor_ID", null, "Select Professor", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })</td>
+                        <td>
+                            @*@Html.EditorFor(model => model.Subject_Type, new { htmlAttributes = new { @class = "form-control", @style = "color:black;width:300px" } })*@
+                            @Html.DropDownListFor(model => model.Subject_Type, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="Theory",Value="Theory"},
+                                    new SelectListItem{Text="Practical",Value="Practical"}
+                               }, "Select Type", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Professor_ID, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Subject_Type, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:16px"><td></td></tr>
+                    <tr class="text-center">
+                        <th>@Html.LabelFor(model => model.Sessions_Per_Week, htmlAttributes: new { @class = "control-label" })</th>
+                        <th>@Html.LabelFor(model => model.Priority_Level, htmlAttributes: new { @class = "control-label" })</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.Sessions_Per_Week, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px" } })</td>
+                        <td>
+                            @*@Html.EditorFor(model => model.Priority_Level, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.Priority_Level, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="Low",Value="0"},
+                                    new SelectListItem{Text="High",Value="1"}
+                               }, "Select Priority", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Sessions_Per_Week, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Priority_Level, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:16px"><td></td></tr>
+                    <tr class="text-center">
+                        <td colspan="2"><input type="submit" value="Submit" class="btn" style="width:300px;background-color:#31D67B;color:black;font-weight:bold;" /></td>
+                    </tr>
+                    @if (ViewBag.ErrMsg != null)
+                    {
+                        <tr class="text-center text-danger">
+                            <td colspan="2">@ViewBag.ErrMsg</td>
+                        </tr>
+                    }
+                </table>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

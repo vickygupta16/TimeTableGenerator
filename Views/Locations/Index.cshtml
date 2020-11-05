@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TTG3.Models.Location>
+@{
+    ViewBag.Title = "Location";
+}
+<h3 class="text-center">Location Details</h3>
+<hr />
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <p class="text-right">
+            @Html.ActionLink("Add New Location", "Create", "Locations", new { @class = "btn", @style = "background-color:#31D67B;color:black;font-weight:bold;" })
+        </p>
+        <table class="table table-bordered table-hover table-striped text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Room)</th>
+                <th>@Html.DisplayNameFor(model => model.Semester_Number)</th>
+                <th>@Html.DisplayNameFor(model => model.Subject_Type)</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Room)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Semester_Number)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Subject_Type)</td>
+                    <td align="center">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Location_ID }, new { @class = "btn btn-sm", @style = "border-width:2px;border-color:red;width:70px;font-weight:bold" })
+                        &nbsp;
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Location_ID }, new { @class = "btn btn-sm", @style = "border-width:2px;border-color:red;width:70px;font-weight:bold" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-2"></div>
+</div>

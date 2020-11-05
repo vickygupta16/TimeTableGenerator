@@ -1,0 +1,133 @@
+﻿@model TTG3.Models.Professor
+
+@{
+    ViewBag.Title = "Add Professor";
+}
+<style>
+    table{
+        border-collapse:separate;
+        border-spacing:50px 0;
+    }
+    td{
+        padding:0px 10px;
+    }
+</style>
+<h3 class="text-center">Add New Professor</h3>
+<br/>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <table style="margin:auto">
+                    <tr class="text-center">
+                        <th>@Html.LabelFor(model => model.Professor_Name, htmlAttributes: new { @class = "control-label" })</th>
+                        <th>@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.Professor_Name, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Full Name", autocomplete = "off" } })</td>
+                        <td>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Email-ID", autocomplete = "off" } })</td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Professor_Name, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:16px"><td></td></tr>
+                    <tr class="text-center">
+                        <th>@Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label" })</th>
+                        <th>@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label" })</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @type = "number", @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Contact Number", autocomplete = "off" } })</td>
+                        <td>
+                            @*@Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Gender", autocomplete = "off" } })*@
+                            @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="Male",Value="Male"},
+                                    new SelectListItem{Text="Female",Value="Female"}
+                               }, "Select Gender", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:16px"><td></td></tr>
+                    <tr class="text-center">
+                        <th>@Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label" })</th>
+                        <th>@Html.LabelFor(model => model.Visiting_Faculty, htmlAttributes: new { @class = "control-label" })</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Age", autocomplete = "off" } })</td>
+                        <td>
+                            @*@Html.EditorFor(model => model.Visiting_Faculty, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "VF", autocomplete = "off" } })*@
+                            @Html.DropDownListFor(model => model.Visiting_Faculty, new List<SelectListItem>
+                           {
+                                new SelectListItem{Text="Yes",Value="Yes"},
+                                new SelectListItem{Text="No",Value="No"}
+                           }, "Select Option", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Visiting_Faculty, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:16px"><td></td></tr>
+                    <tr class="text-center">
+                        <th>@Html.LabelFor(model => model.Start_Hour, htmlAttributes: new { @class = "control-label" })</th>
+                        <th>@Html.LabelFor(model => model.End_Hour, htmlAttributes: new { @class = "control-label" })</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.EditorFor(model => model.Start_Hour, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "Start Time", autocomplete = "off" } })*@
+                            @Html.DropDownListFor(model => model.Start_Hour, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="9",Value="9"},
+                                    new SelectListItem{Text="10",Value="10"},
+                                    new SelectListItem{Text="11",Value="11"},
+                                    new SelectListItem{Text="12",Value="12"},
+                                    new SelectListItem{Text="13",Value="13"},
+                                    new SelectListItem{Text="14",Value="14"},
+                                    new SelectListItem{Text="15",Value="15"},
+                                    new SelectListItem{Text="16",Value="16"}
+                               }, "Select Availability Time", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                        <td>
+                            @*@Html.EditorFor(model => model.End_Hour, new { htmlAttributes = new { @class = "form-control text-center", @style = "color:black;width:300px", placeholder = "End Time", autocomplete = "off" } })*@
+                            @Html.DropDownListFor(model => model.End_Hour, new List<SelectListItem>
+                               {
+                                    new SelectListItem{Text="11",Value="11"},
+                                    new SelectListItem{Text="12",Value="12"},
+                                    new SelectListItem{Text="13",Value="13"},
+                                    new SelectListItem{Text="14",Value="14"},
+                                    new SelectListItem{Text="15",Value="15"},
+                                    new SelectListItem{Text="16",Value="16"},
+                                    new SelectListItem{Text="17",Value="17"}
+                               }, "Select Availability Time", htmlAttributes: new { @class = "form-control", @style = "color:black;width:300px" })
+                        </td>
+                    </tr>
+                    <tr class="text-right">
+                        <td>@Html.ValidationMessageFor(model => model.Start_Hour, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.End_Hour, "", new { @class = "text-danger", @style = "font-size:14px" })</td>
+                    </tr>
+                    <tr style="height:16px"><td></td></tr>
+                    <tr class="text-center">
+                        <td colspan="2"><input type="submit" value="Submit" class="btn" style="width:300px;background-color:#31D67B;color:black;font-weight:bold;" /></td>
+                    </tr>
+                    @if (ViewBag.ErrMsg != null)
+                    {
+                        <tr class="text-center text-danger">
+                            <td colspan="2">@ViewBag.ErrMsg</td>
+                        </tr>
+                    }
+                </table>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model TTG3.Models.Session
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Session</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Professor.Professor_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Professor.Professor_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject.Subject_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject.Subject_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Semester_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semester_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sessions_Per_Week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sessions_Per_Week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority_Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority_Level)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Session_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
